@@ -1,12 +1,14 @@
 # This file contains the parameters set i will be using throughout this project
+import numpy as np
 
 # hamming parameters
 
-n=7 #codeword length
-k=4 #message bit length
+n = 7  # codeword length
+k = 4  # message bit length
 
-H = [[1,1,1,0,1,0,0],[1,1,0,1,0,1,0],[1,0,1,1,0,0,1]] # parity-check matrix
-
+H = np.array(
+    [[1, 1, 1, 0, 1, 0, 0], [1, 1, 0, 1, 0, 1, 0], [1, 0, 1, 1, 0, 0, 1]],
+)  # parity-check matrix
 
 
 # Convolutional parameters
@@ -14,9 +16,9 @@ K = 4
 memory = 3
 states = 8
 
-g1 = [1, 1, 0, 1]  
+g1 = [1, 1, 0, 1]
 
-g2 = [1, 0, 1, 1]  
+g2 = [1, 0, 1, 1]
 
 # experiment settings
 
