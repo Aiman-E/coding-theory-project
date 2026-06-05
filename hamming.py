@@ -13,6 +13,7 @@ class HammingCode:
         ]  # take the n(number of bits in one block) from the number of columns in H
 
         self.G = self.build_g_matrix(self.H)  # store the generator matrix
+        self.check_the_generator_matrix()
 
     # take the message block and encode it
     def encode_block(self, message_block):
