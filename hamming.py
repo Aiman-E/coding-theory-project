@@ -113,3 +113,17 @@ class HammingCode:
         )  # join I and P horizontally not vertically to get the g matrix
 
         return G
+
+    # As the project sheet requires, add a check for the generator matrix
+    def check_the_generator_matrix(self):
+        print("Generator matrix check:")
+        print("  G shape:", self.G.shape)
+        print("  H shape:", self.H.shape)
+
+        G_times_H_transpose = np.matmul(self.G, np.transpose(self.H))
+        check = np.mod(G_times_H_transpose, 2)
+
+        print("  G mult H.T mod 2:")
+        print(check)
+        print("  Passed:", np.all(check == 0))
+        print()
