@@ -14,3 +14,10 @@ def text_to_bits(text):
             bits.append(int(bit))
 
     return np.array(bits, dtype=np.uint8)
+
+
+def print_bits_summary(name, bits, preview_size=32):
+    print(name)
+    print("  Length:", len(bits))
+    print("  First bits:", bits[:preview_size])
+    print()
