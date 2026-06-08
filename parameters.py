@@ -20,6 +20,8 @@ g1 = [1, 1, 0, 1]
 
 g2 = [1, 0, 1, 1]
 
+generators = [g2, g1]  # change the order to match the project requirements
+
 # experiment settings
 
 personal_message = "ECC2026-S04D"
