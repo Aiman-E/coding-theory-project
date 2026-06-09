@@ -109,10 +109,10 @@ def convolutional_only():
 
     print_bits_summary("Original message bits:", message_bits)
 
-    print_bits_summary("Encoded bits without termination:", encoded_bits_not_terminated)
-    print_bits_summary("Encoded bits with termination:", encoded_bits_terminated)
+    # print_bits_summary("Encoded bits without termination:", encoded_bits_not_terminated)
+    print_bits_summary("Encoded bits:", encoded_bits_terminated)
 
-    print("Encoding length test without termination:")
+    """print("Encoding length test without termination:")
     print("  Expected encoded length:", expected_length_not_terminated)
     print("  Actual encoded length:  ", len(encoded_bits_not_terminated))
     print(
@@ -149,5 +149,34 @@ def convolutional_only():
         print()
 
         state = next_state
-
+    """
     print("=" * 50)
+
+    decoded_bits = convolutional_encoder.decode(
+        encoded_bits_terminated, terminated=True
+    )
+
+    print("Viterbi clean decoding test:")
+    print("  Original length:", len(message_bits))
+    print("  Decoded length: ", len(decoded_bits))
+    print("  Passed:", np.array_equal(message_bits, decoded_bits))
+    print()
+
+    print("-" * 50)
+    print("VITERBI SINGLE-BIT CORRUPTION TEST")
+    print("-" * 50)
+
+    corrupted_bits = encoded_bits_terminated.copy()
+
+    error_position = 5
+    corrupted_bits[error_position] ^= 1
+
+    decoded_corrupted_bits = convolutional_encoder.decode(
+        corrupted_bits, terminated=True
+    )
+
+    print("Flipped encoded bit position:", error_position)
+    print("Original encoded bit:", encoded_bits_terminated[error_position])
+    print("Corrupted encoded bit:", corrupted_bits[error_position])
+    print("Passed:", np.array_equal(message_bits, decoded_corrupted_bits))
+    print()
